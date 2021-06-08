@@ -42,15 +42,6 @@
 	clock-names = "apb_pclk";
 };
 
-&wdt {
-	status = "okay";
-	clocks = <&wdt_clk>;
-};
-
-&gpio {
-	status = "okay";
-};
-
 &piether {
 	status = "okay";
 	phy-handle = <&phy0>;
@@ -67,4 +58,21 @@
 			reg = <0x1>;
 		};
 	};
+};
+
+&wdt {
+	status = "okay";
+	clocks = <&wdt_clk>;
+};
+
+&gpio {
+	status = "okay";
+};
+
+&pwm_mux {
+	groups = "pwm0_gpio16_grp", "pwm1_gpio17_grp", "pwm2_gpio18_grp", "pwm3_gpio19_grp";
+};
+
+&pwm {
+	status = "okay";
 };

@@ -416,11 +416,6 @@
 			status = "disabled";
 		};
 
-		wdt: wdt@28330000 {
-			compatible = "toshiba,visconti-wdt";
-			reg = <0 0x28330000 0 0x1000>;
-		};
-
 		piether: ethernet@28000000 {
 			compatible = "toshiba,visconti-dwmac", "snps,dwmac-4.20a";
 			reg = <0 0x28000000 0 0x10000>;
@@ -429,6 +424,21 @@
 			snps,txpbl = <4>;
 			snps,rxpbl = <4>;
 			snps,tso;
+			status = "disabled";
+		};
+
+		wdt: wdt@28330000 {
+			compatible = "toshiba,visconti-wdt";
+			reg = <0 0x28330000 0 0x1000>;
+			status = "disabled";
+		};
+
+		pwm: pwm@241c0000 {
+			compatible = "toshiba,visconti-pwm";
+			reg = <0 0x241c0000 0 0x1000>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&pwm_mux>;
+			#pwm-cells = <2>;
 			status = "disabled";
 		};
 	};
