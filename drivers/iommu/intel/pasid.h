@@ -48,6 +48,7 @@
  */
 #define PASID_FLAG_SUPERVISOR_MODE	BIT(0)
 #define PASID_FLAG_NESTED		BIT(1)
+#define PASID_FLAG_PAGE_SNOOP		BIT(2)
 
 /*
  * The PASID_FLAG_FL5LP flag Indicates using 5-level paging for first-
@@ -96,6 +97,12 @@ get_pasid_table_from_pde(struct pasid_dir_entry *pde)
 static inline bool pasid_pte_is_present(struct pasid_entry *pte)
 {
 	return READ_ONCE(pte->val[0]) & PASID_PTE_PRESENT;
+}
+
+/* Get PGTT field of a PASID table entry */
+static inline u16 pasid_pte_get_pgtt(struct pasid_entry *pte)
+{
+	return (u16)((READ_ONCE(pte->val[0]) >> 6) & 0x7);
 }
 
 extern unsigned int intel_pasid_max_id;
